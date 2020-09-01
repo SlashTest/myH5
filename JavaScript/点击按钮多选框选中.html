@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="checkbox"  id="check"  />
+		<br>
+		<input type="button" id="btn" value="点击换" />
+<!-- 		<input type="checkbox" name="" id="" value="" />
+		<input type="checkbox" name="" id="" value="" />
+		<input type="checkbox" name="" id="" value="" /> -->
+		<script type="text/javascript">
+			window.onload = function(){
+				var btn = document.getElementById('btn');
+				var check =document.getElementById('check');
+				btn.onclick = function(){
+					check.checked = true;
+				}
+				}
+		</script>
+	</body>
+</html>

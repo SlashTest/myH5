@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			#box {
+				width: 200px;
+				height: 100px;
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+
+		</div>
+
+		<script type="text/javascript">
+			var box = document.getElementById('box');
+
+			var flag = true;
+			box.addEventListener('mousewheel', scrollMove);
+			box.addEventListener('DOMMouseScroll', scrollMove);
+			//兼容封装ie/chrome和火狐
+			function scrollMove(event) {
+				event = event || window.event;
+				if (event.wheelDelta) {
+					if (event.wheelDelta > 0) {
+						//往上滚
+						flag = true;
+					} else {
+						flag = false;
+						//往下滚
+					}
+				} else if (event.detail) {
+					if (event.detail > 0) {
+						//往上滚
+						flag = true;
+					} else {
+						//往下滚
+						flag = false;
+					}
+				}
+				if (flag) {
+					box.style.height = box.offsetHeight - 10 + 'px';
+				} else {
+					box.style.height = box.offsetHeight + 10 + 'px';
+				}
+
+			}
+		</script>
+	</body>
+</html>

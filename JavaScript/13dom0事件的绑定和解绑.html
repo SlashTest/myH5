@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="button" name="" id="" value="点击绑定事件" />
+		<input type="button" name="" id="" value="点击解绑事件" />
+	</body>
+	
+	<script type="text/javascript">
+		var btns = document.querySelectorAll('input');
+		btns[0].onclick = function(){
+			console.log(' Fuck the world');
+		}
+		btns[0].onclick = function(){
+			console.log('suck my ball');
+		}
+		
+		
+		btns[1].onclick = function(){
+			btns[0].onclick = null;
+		}
+	</script>
+</html>

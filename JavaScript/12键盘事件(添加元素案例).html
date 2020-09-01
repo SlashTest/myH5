@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" placeholder="请输入您的爱好" />
+		<ul class="list">
+			
+		</ul>
+		<script type="text/javascript">
+			var inputNode = document.querySelector('input');
+			var ulNode = document.querySelector('.list')
+			
+			inputNode.onkeyup = function(event){
+				if (event.keyCode == 13) {
+					var value = inputNode.value;
+					
+					
+					
+					if (value.trim()) {
+						var liNode = document.createElement('li');
+						liNode.innerText = value;
+						
+						ulNode.appendChild(liNode);
+						
+						liNode.onmouseenter = function(){
+							this.style.backgroundColor = 'skyblue';
+						}
+						liNode.onmouseleave = function(){
+							this.style.backgroundColor = 'transparent';
+						}
+					}else{
+						alert("请输入合法的兴趣");
+					}
+					inputNode.value = '';
+				}
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="button"disabled="disabled" value="阅读协议(5s)"/>
+	</body>
+	<script type="text/javascript">
+		var inputNode = document.querySelector('input');
+		var num = 5;
+		timer = null;
+		timer = setInterval(function(){
+			num--;
+			inputNode.value = '阅读协议('+num+'s)'
+			if(num==0){
+				clearInterval(timer);
+				inputNode.value = '阅读协议';
+				inputNode.disabled = false;
+			}
+		},1000);
+		
+		
+		
+	</script>
+</html>

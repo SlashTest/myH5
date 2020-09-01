@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			ul,
+			li {
+				list-style: none;
+			}
+
+			img {
+				display: block;
+			}
+
+			a {
+				text-decoration: none;
+			}
+
+			html,
+			body {
+				height: 100%;
+				overflow: hidden;
+			}
+
+			input {
+				outline: none;
+			}
+
+			.banner {
+				position: relative;
+				width: 600px;
+				height: 300px;
+				margin: 50px auto;
+				overflow: hidden;
+			}
+
+			.banner .bannerList {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 4200px;
+				height: 300px;
+			}
+
+			.banner .bannerList li {
+				float: left;
+				width: 600px;
+				height: 300px;
+			}
+
+			.banner .bannerList li img {
+				width: 100%;
+				height: 100%;
+			}
+
+			.banner .left,
+			.banner .right {
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%);
+				/* display: block; */
+				width: 50px;
+				height: 80px;
+				font-size: 40px;
+				text-align: center;
+				line-height: 80px;
+				color: #fff;
+				cursor: pointer;
+				background-color: rgba(0, 0, 0, .2);
+				opacity: 0;
+				transition: opacity 2s;
+			}
+
+			.banner .left {
+				left: 0;
+			}
+
+			.banner .right {
+				right: 0;
+			}
+
+			.banner .iconList {
+				position: absolute;
+				left: 50%;
+				transform: translateX(-50%);
+				bottom: 10px;
+				/* overflow: hidden; */
+			}
+
+			.banner .iconList li {
+				margin-right: 5px;
+				float: left;
+				width: 20px;
+				height: 20px;
+				border-radius: 50%;
+				background-color: gray;
+			}
+
+			.banner .iconList li.current {
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="banner">
+			<ul class="bannerList">
+				<li>
+					<img src="./img/5.png" />
+				</li>
+				<li>
+					<img src="./img/1.png" />
+				</li>
+				<li>
+					<img src="./img/2.jpg" />
+				</li>
+				<li>
+					<img src="./img/3.jpg" />
+				</li>
+				<li>
+					<img src="./img/4.png" />
+				</li>
+				<li>
+					<img src="./img/5.png" />
+				</li>
+				<li>
+					<img src="./img/1.png" />
+				</li>
+			</ul>
+			<ul class="iconList">
+				<li class="current"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+			<span class="left">
+				<</span> <span class="right">>
+			</span>
+		</div>
+
+		<script type="text/javascript">
+			var box = document.querySelector('.banner');
+			var left = document.querySelector('.banner .left');
+			var right = document.querySelector('.banner .right');
+			var bannerList = document.querySelector('.banner .bannerList');
+			var iconItems = document.querySelectorAll('.banner .iconList li');
+			var timeAll = 600; //总用时600ms
+			var timeStep = 20; //一步20ms
+			var timer = null;
+			var isMove = false; //针对多次点击
+			var autoTimer = null;
+			bannerList.style.left = -600 + 'px';
+			box.onmouseenter = function() {
+				left.style.opacity = 1;
+				right.style.opacity = 1;
+				clearInterval(autoTimer); //鼠标行为同步
+			}
+			box.onmouseleave = function() {
+				left.style.opacity = 0;
+				right.style.opacity = 0;
+				autoRun();
+			}
+			right.onclick = function() {
+				move(false);
+			}
+			left.onclick = function() {
+				move(true);
+			}
+
+			function move(flag) {
+				//点一次走的距离差是-600
+				//元素最终的位置,
+
+				if (isMove) {
+					return;
+				}
+				isMove = true;
+				setTimeout(function() {
+					isMove = false;
+				}, 600);
+
+				if (typeof flag == 'boolean') {
+					var dis = flag ? 600 : -600;
+				} else {
+					var dis = flag - bannerList.offsetLeft //点击小圆点传的是元素最终的位置
+				}
+				var lastDis = bannerList.offsetLeft + dis; //求元素最终的位置
+				var step = dis / (timeAll / timeStep); //求每一步走的距离??
+
+				timer = setInterval(function() {
+					var left = bannerList.offsetLeft + step;
+					if (left == lastDis) {
+						clearInterval(timer);
+
+						//加无缝逻辑:
+						if (left == -3600) {
+							left = -600;
+						} else if (left == 0) {
+							left = -3000;
+						}
+					}
+					bannerList.style.left = left + 'px';
+				}, timeStep);
+				//小圆点变色问题
+				var index = (Math.abs(lastDis / 600) - 1);
+				if (index < 0) {
+					index = iconItems.length - 1;
+				}
+				for (i = 0; i < iconItems.length; i++) {
+					iconItems[i].className = '';
+				}
+				iconItems[index % 5].className = 'current';
+				autoIndex = index % 5 + 1;
+			}
+			//点击小圆点移动到对应的图片
+			for (var i = 0; i < iconItems.length; i++) {
+				iconItems[i].index = i;
+				iconItems[i].onclick = function() {
+					move((this.index + 1) * -600);
+					autoIndex = this.index + 1; //更新自动轮播
+				}
+			}
+			//自动轮播
+			//定时器
+			var autoIndex = 1;
+			autoRun();
+
+			function autoRun() {
+				autoTimer = setInterval(function() {
+					autoIndex++;
+					move(autoIndex * -600);
+					if (autoIndex == 6) {
+						autoIndex = 1;
+					}
+				}, 2000);
+			}
+
+
+
+
+
+
+			// var liNode = document.querySelectorAll('.banner .iconList li');
+			// for (var i = 0; i < liNode.length; i++) {
+			// 	liNode[i].onclick = function() {
+			// 		for (var j = 0; j < liNode.length; j++) {
+			// 			liNode[j].className = '';
+			// 		}
+			// 		this.className = 'current';
+			// 	}
+			// }
+		</script>
+	</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var a =10;
+			a = true;
+			a = undefined;
+			a = null;
+			a = [1,23];
+			a = function(){
+				console.log(111);
+			}
+			a = {};
+			
+			function Person(name,age){
+				this.name = name;
+				this.age = age;
+			}
+			var per = new Person('zhaoliying',32);
+			console.log(per instanceof Person);
+			console.log(a instanceof Array);
+			a = [];
+			console.log(Array.isArray(a));
+			console.log(typeof a);
+			
+		</script>
+	</body>
+</html>
+
+
+<!-- undefined 0 0 1 0-->

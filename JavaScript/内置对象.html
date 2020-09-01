@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var dataTest = {
+				name:'赵丽颖',
+				age:32
+			}
+			
+			var dataTestArr = [{name:'赵丽颖',age:32},{name:'杨幂',age:33},{name:'热巴',age:28}]
+			var dataStr =JSON.stringify(dataTest);
+			console.log(dataStr);
+			var dataStr = JSON.stringify(dataTestArr);
+			console.log(dataStr);
+			var data = JSON.parse(dataStr)
+			console.log(data);
+			result = Math.pow(3,3)
+			console.log(result)
+			console.log(Math.ceil(0.8))
+			console.log(parseInt(Math.random(4)*10000));
+			var result = Math.floor(Math.random()*79+1)
+			console.log(result)
+			function getRandom(min,max){
+				return Math.floor(Math.random()*(max - min -1))+min;
+			}
+			console.log(getRandom(1000,9999));//随机四位数字验证码
+			//随机8位验证码
+			var str = 
+	'QWERTYUIOPASDFGHJKLZXCVBNM12345567890qwertyuiopasdfghjklzxcvbnm';
+			var targetStr = '';
+			for (var i = 0; i < 8; i++) {
+				targetStr +=str[Math.floor(Math.random()*str.length)];
+			}
+			console.log(targetStr);
+			
+			function Check(num){
+				var str = 
+	'QWERTYUIOPASDFGHJKLZXCVBNM12345567890qwertyuiopasdfghjklzxcvbnm';
+				var targetStr = '';
+				for (var i = 0; i < num; i++) {
+					targetStr +=str[Math.floor(Math.random()*str.length)];
+				}
+				return targetStr;
+			}
+			console.log(Check(12));
+			var date = new Date();
+			console.log(date);
+			
+			
+			function formatDate(){
+				var date = new Date();
+				var year = date.getFullYear();
+				var month = date.getMonth();
+				var day = date.getDate();
+				
+				var hour  = date.getHours();
+				var min = date.getMinutes();
+				var sec = date.getSeconds();
+				return year+'年'+month+'月'+day+'日'+hour+':'+min+':'+sec		
+			}
+			console.log(formatDate());
+		</script>
+	</body>
+</html>

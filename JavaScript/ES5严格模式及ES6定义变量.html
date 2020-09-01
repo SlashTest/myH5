@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			"use strict"
+			var a = 10;
+			console.log(a);
+			function Person(name,age){
+				this.name = name;
+				this.age = age;
+			}
+			var per1 = new Person('zs',23);
+			console.log(per1);
+			var arr= [88,55,78,41,96,21,9];
+			var result = arr.sort(function(a,b){
+				return a - b;
+			})
+			console.log(result);
+		</script>
+	</body>
+</html>

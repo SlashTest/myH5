@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<p class="pp">1</p>
+		<p class="pp">2</p>
+		<p class="pp">3</p>
+		<p class="pp">4</p>
+		<script type="text/javascript">
+			window.onload = function(){
+				var pList = document.querySelectorAll('.pp');
+				console.log(pList);
+				for(var i = 0 ; i < pList.length; i++){
+					pList[i].onclick = function (){
+						for(var j = 0;j < pList.length ; j++){
+						pList[j].innerHTML = '姓名';	
+						}
+						this.innerHTML = '爽';
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

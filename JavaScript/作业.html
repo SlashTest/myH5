@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// var str = 'asfsjdfsdhfh123';
+			// var arr = str.split('');
+			// arr.reverse();
+			// str = arr.join('');
+			// console.log(str)
+			var str = '1312783067564126089';
+			var obj = {};
+			for(var i = 0;i < str.length; i++){
+				
+				var charS = str[i];
+				if(obj[charS]){
+					obj[charS]++
+				}else{
+					obj[charS] = 1;
+				}
+			}
+			console.log(obj);
+			
+		</script>
+	</body>
+</html>

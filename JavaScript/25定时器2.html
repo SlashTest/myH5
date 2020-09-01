@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var timer = null;
+			var num = 0;
+			timer = setInterval(function(){
+				num++;
+				console.log('i love you !');
+				if(num == 10){
+					clearInterval(timer);
+				}
+			},3000);
+			
+		</script>
+	</body>
+</html>

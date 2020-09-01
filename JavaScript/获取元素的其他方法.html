@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<p>1</p>
+		<p>2</p>
+		<p>3</p>
+		<p>4</p>
+		<script type="text/javascript">
+			window.onload = function(){
+				var pList = document.getElementsByTagName('p');
+				console.log(pList);
+				for(var i = 0 ; i < pList.length; i++){
+					pList[i].onclick = function (){
+						for(var j = 0;j < pList.length ; j++){
+						pList[j].innerHTML = '<h2>姓名</h2>';	
+						}
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

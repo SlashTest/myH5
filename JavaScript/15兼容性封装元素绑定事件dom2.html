@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script type="text/javascript">
+			
+			function addevent(obj,eventType,fn,isBubble){
+				if (obj.addEventListener) {
+						obj.addEventListener(eventType,fn,isBubble)
+				}else{
+					obj.attachEvent('on'+eventType,fn);
+				}
+			}
+			
+			
+			function removeEvent(obj,eventType,fn,isBubble){
+				if (obj.removeEvent) {
+					obj.removeEventListener(eventType,fn,isBubble);
+				} else{
+					obj.detach('on'+eventType,fn);
+				}
+			}
+			
+		</script>
+	</body>
+</html>

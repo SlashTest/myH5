@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			html,
+			body {
+				height: 100%;
+				overflow: hidden;
+			}
+
+			#box {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 200px;
+				height: 100px;
+				background-color: red;
+			}
+
+			img {
+				position: absolute;
+				display: block;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				top: 0;
+				margin: auto;
+				/* left: 50%;
+				top: 50%;
+				transform: translate(-50%,-50%); */
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			八万哥
+		</div>
+		<img src="img/4.png" style="width: 200px;">
+		<script type="text/javascript">
+			//拖拽
+			var box = document.getElementById('box');
+			event = event || window.event;
+			box.onmousedown = function(event) {
+				var eleX = box.offsetLeft;
+				var eleY = box.offsetTop;
+				var startX = event.clientX;
+				var startY = event.clientY;
+				box.setCapture && box.setCapture()
+				document.onmousemove = function(event) {
+					event = event || window.event;
+					var endX = event.clientX;
+					var endY = event.clientY;
+					var disX = endX - startX;
+					var disY = endY - startY;
+					var lastX = eleX + disX;
+					var lastY = eleY + disY;
+					box.style.left = lastX + 'px';
+					box.style.top = lastY + 'px';
+					
+				}
+				document.onmouseup = function() {
+					document.onmousemove = box.onmouseup = null;
+					box.releaseCapture && box.releaseCapture();
+				}
+				//dom0事件取消默认行为
+				return false
+				//dom2事件取消默认行为
+				event.preventDefault();
+			}
+		</script>
+	</body>
+</html>
